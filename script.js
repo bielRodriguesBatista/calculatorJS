@@ -45,7 +45,7 @@ class Calculator {
       case "*":
         computation = prev * current;
         break;
-      case '+':
+      case '/':
         computation = prev / current
         break;
         default:
@@ -55,5 +55,24 @@ class Calculator {
     this.currentOperand = computation
     this.operation = undefined
     this.previousOperand = ''
+  }
+
+  getDisplayNumber(number){
+    const stringNumber = number.toString()
+    const integerDigits = parseFloat(stringNumber.split('.')[0])
+    const decimalDigits = stringNumber.split('.')[1]
+    let integerDisplay /*Integers display*/
+
+    if(isNaN(integerDisplay)){
+      integerDisplay = ''
+    } else {
+      integerDisplay = integerDigits.toLocaleString('en', {maximumFractionDigits: 0})
+    }
+    if(decimalDigits != null){
+      return `${integerDisplay}.${decimalDigits}`
+    } else {
+      return integerDisplay
+    }
+
   }
 }
