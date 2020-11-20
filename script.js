@@ -6,17 +6,17 @@ class Calculator {
   }
 
   clear() {
-    this.currentOperand = "";
-    this.previousOperand = "";
-    this.operation = undefined;
+    this.currentOperand = ''
+    this.previousOperand = ''
+    this.operation = undefined
   }
 
   delete() {
-    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+    this.currentOperand = this.currentOperand.toString().slice(0, -1)
   }
 
   appendNumber(number) {
-    if (number === "." && this.currentOperand.includes(".")) return;
+    if (number === "." && this.currentOperand.includes(".")) return
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
 
@@ -98,9 +98,16 @@ const currentOperandTextElement = document.querySelector('[data-current-operand]
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
-numberButtons.forEach(button => {
+numberButtons.forEach(button =>{
   button.addEventListener('click', () => {
     button.appendNumber(button.innerText)
+    calculator.updateDisplay()
+  })
+})
+
+operationButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.chooseOperand(button.innerText)
     calculator.updateDisplay()
   })
 })
@@ -110,4 +117,13 @@ equalsButton.addEventListener('click', button => {
   calculator.updateDisplay()
 })
 
-allClearButton
+allClearButton.addEventListener('click', button => {
+  calculator.clear()
+  calculator.updateDisplay()
+})
+
+
+deleteButton.addEventListener('click', button => {
+  calculator.delete()
+  calculator.updateDisplay()
+})
