@@ -81,7 +81,7 @@ class Calculator {
       this.getDisplayNumber(this.currentOperand)
     if(this.operation != null){
       this.previousOperandTextElement.innerText = 
-      `${}`
+      
     }
   }
 }
